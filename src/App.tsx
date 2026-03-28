@@ -496,10 +496,10 @@ const collectionGroups = [
 
 function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
-    <div className="mb-8 max-w-4xl">
-      <p className="mb-3 text-xs uppercase tracking-[0.28em] text-paper-500">{eyebrow}</p>
-      <h2 className="font-serif text-3xl leading-tight text-paper-900 md:text-4xl">{title}</h2>
-      {description ? <p className="mt-4 text-sm leading-7 text-paper-700 md:text-[15px]">{description}</p> : null}
+    <div className="mb-7 max-w-4xl md:mb-8">
+      <p className="mb-2 text-[11px] uppercase tracking-[0.24em] text-paper-500 md:mb-3 md:text-xs md:tracking-[0.28em]">{eyebrow}</p>
+      <h2 className="font-serif text-[1.9rem] leading-tight text-paper-900 md:text-4xl">{title}</h2>
+      {description ? <p className="mt-3 text-sm leading-7 text-paper-700 md:mt-4 md:text-[15px]">{description}</p> : null}
     </div>
   );
 }
@@ -508,7 +508,7 @@ function TagRow({ items }: { items: readonly string[] }) {
   return (
     <div className="flex flex-wrap gap-2">
       {items.map((item) => (
-        <span key={item} className="rounded-full border border-paper-200 bg-white/70 px-4 py-2 text-[11px] tracking-[0.22em] text-paper-600 backdrop-blur-sm">
+        <span key={item} className="rounded-full border border-paper-200 bg-white/70 px-3 py-1.5 text-[10px] tracking-[0.18em] text-paper-600 backdrop-blur-sm md:px-4 md:py-2 md:text-[11px] md:tracking-[0.22em]">
           {item}
         </span>
       ))}
@@ -522,9 +522,9 @@ function GlassCard({ children, className = '' }: { children: ReactNode; classNam
 
 function ProcessStep({ index, title, desc }: { index: string; title: string; desc: string }) {
   return (
-    <div className="rounded-[1.5rem] bg-paper-50 p-5 ring-1 ring-paper-200/60">
-      <p className="text-xs uppercase tracking-[0.24em] text-paper-500">{index}</p>
-      <h4 className="mt-3 font-serif text-xl text-paper-900">{title}</h4>
+    <div className="rounded-[1.5rem] bg-paper-50 p-4 ring-1 ring-paper-200/60 md:p-5">
+      <p className="text-[11px] uppercase tracking-[0.22em] text-paper-500 md:text-xs md:tracking-[0.24em]">{index}</p>
+      <h4 className="mt-3 font-serif text-lg text-paper-900 md:text-xl">{title}</h4>
       <p className="mt-3 text-sm leading-7 text-paper-700">{desc}</p>
     </div>
   );
@@ -534,15 +534,20 @@ function Modal({ open, onClose, title, children }: { open: boolean; onClose: () 
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-paper-900/45 px-4 py-8 backdrop-blur-sm" onClick={onClose}>
-      <div className="max-h-[85vh] w-full max-w-4xl overflow-hidden rounded-[2rem] bg-paper-50 shadow-soft ring-1 ring-paper-200" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center justify-between gap-4 border-b border-paper-200 px-6 py-4">
-          <h3 className="font-serif text-2xl text-paper-900">{title}</h3>
-          <button onClick={onClose} className="rounded-full border border-paper-300 px-4 py-2 text-sm text-paper-700 transition hover:bg-white">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-paper-900/45 px-3 py-3 backdrop-blur-sm md:items-center md:px-4 md:py-8" onClick={onClose}>
+      <div
+        className="max-h-[92vh] w-full max-w-4xl overflow-hidden rounded-[1.6rem] bg-paper-50 shadow-soft ring-1 ring-paper-200 md:max-h-[85vh] md:rounded-[2rem]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-3 border-b border-paper-200 px-4 py-4 md:items-center md:gap-4 md:px-6">
+          <h3 className="pr-2 font-serif text-xl leading-8 text-paper-900 md:text-2xl">{title}</h3>
+          <button onClick={onClose} className="shrink-0 rounded-full border border-paper-300 px-3 py-2 text-sm text-paper-700 transition hover:bg-white md:px-4">
             关闭
           </button>
         </div>
-        <div className="max-h-[calc(85vh-72px)] overflow-y-auto whitespace-pre-line px-6 py-6 text-sm leading-8 text-paper-800">{children}</div>
+        <div className="max-h-[calc(92vh-72px)] overflow-y-auto whitespace-pre-line px-4 py-5 text-[15px] leading-8 text-paper-800 md:max-h-[calc(85vh-72px)] md:px-6 md:py-6 md:text-sm">
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -555,12 +560,12 @@ function CollectionMosaic({
   group: (typeof collectionGroups)[number];
   className?: string;
 }) {
-  const frameClass = 'overflow-hidden rounded-[1.1rem] bg-paper-50/85 p-2';
-  const imageClass = 'w-full rounded-[0.85rem] object-contain';
+  const frameClass = 'overflow-hidden rounded-[1rem] bg-paper-50/85 p-1.5 md:rounded-[1.1rem] md:p-2';
+  const imageClass = 'w-full rounded-[0.8rem] object-contain md:rounded-[0.85rem]';
 
   if (group.layout === 'horizontal-pair' || group.layout === 'mixed') {
     return (
-      <div className={`grid gap-3 sm:grid-cols-2 ${className}`}>
+      <div className={`grid gap-2.5 sm:grid-cols-2 md:gap-3 ${className}`}>
         {group.images.map((image, index) => (
           <article key={`${group.title}-${index}`} className={frameClass}>
             <img src={image} alt={`${group.title} ${index + 1}`} className={imageClass} />
@@ -600,11 +605,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(217,182,176,0.15),transparent_34%),linear-gradient(180deg,#fbf8f5_0%,#f5f1eb_100%)] text-paper-800">
-      <main className="mx-auto max-w-7xl px-5 pb-20 pt-6 md:px-8 lg:px-10">
-        <header className="sticky top-0 z-30 -mx-5 mb-10 border-b border-paper-200/60 bg-[rgba(251,248,245,0.82)] px-5 py-4 backdrop-blur md:-mx-8 md:px-8 lg:-mx-10 lg:px-10">
-          <div className="flex flex-wrap items-center justify-between gap-4 text-xs uppercase tracking-[0.26em] text-paper-500">
-            <span>IP 开发策划作品集</span>
-            <nav className="flex flex-wrap gap-4 md:gap-6">
+      <main className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-5 md:px-8 md:pb-20 md:pt-6 lg:px-10">
+        <header className="sticky top-0 z-30 -mx-4 mb-8 border-b border-paper-200/60 bg-[rgba(251,248,245,0.82)] px-4 py-3 backdrop-blur sm:-mx-5 sm:px-5 md:-mx-8 md:mb-10 md:px-8 md:py-4 lg:-mx-10 lg:px-10">
+          <div className="flex flex-col gap-3 text-[11px] uppercase tracking-[0.22em] text-paper-500 md:flex-row md:items-center md:justify-between md:gap-4 md:text-xs md:tracking-[0.26em]">
+            <span className="shrink-0">IP 开发策划作品集</span>
+            <nav className="-mx-1 flex gap-3 overflow-x-auto px-1 pb-1 text-[10px] whitespace-nowrap scrollbar-none md:mx-0 md:flex-wrap md:justify-end md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:text-xs">
               <a href="#intro" className="transition hover:text-paper-800">Intro</a>
               <a href="#merch" className="transition hover:text-paper-800">Merch</a>
               <a href="#content" className="transition hover:text-paper-800">Content</a>
@@ -614,26 +619,26 @@ function App() {
           </div>
         </header>
 
-        <section id="intro" className="py-8 md:py-12">
-          <div className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr] lg:items-center lg:gap-8 xl:gap-10">
+        <section id="intro" className="scroll-mt-28 py-6 md:scroll-mt-32 md:py-12">
+          <div className="grid gap-6 lg:grid-cols-[1.18fr_0.82fr] lg:items-center lg:gap-8 xl:gap-10">
             <div className="max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.3em] text-paper-500">Papergames-inspired / Morandi palette</p>
-              <h1 className="mt-5 font-serif text-4xl leading-tight text-paper-900 md:text-5xl">曹雯一</h1>
-              <p className="mt-4 text-base tracking-[0.18em] text-paper-600 md:text-lg">企划落地 · 吃谷能手 · 资深二次元 · 叠系玩家</p>
-              <p className="mt-7 max-w-3xl text-lg leading-9 text-paper-800 md:text-[1.35rem]">从内容到实物，把热爱温柔地落进现实。</p>
-              <div className="mt-7">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.3em]">Papergames-inspired / Morandi palette</p>
+              <h1 className="mt-4 font-serif text-[2.5rem] leading-tight text-paper-900 md:mt-5 md:text-5xl">曹雯一</h1>
+              <p className="mt-3 text-sm leading-7 tracking-[0.14em] text-paper-600 md:mt-4 md:text-lg md:tracking-[0.18em]">企划落地 · 吃谷能手 · 资深二次元 · 叠系玩家</p>
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-paper-800 md:mt-7 md:text-[1.35rem] md:leading-9">从内容到实物，把热爱温柔地落进现实。</p>
+              <div className="mt-5 md:mt-7">
                 <TagRow items={roleTags} />
               </div>
 
-              <GlassCard className="mt-7 max-w-2xl p-5 md:p-6">
-                <div className="space-y-3 text-[15px] leading-8 text-paper-700 md:text-base">
+              <GlassCard className="mt-5 max-w-2xl p-4 md:mt-7 md:p-6">
+                <div className="space-y-3 text-sm leading-7 text-paper-700 md:text-base md:leading-8">
                   <p>恋与制作人 | 恋与深空 开服玩家，叠纸心意旗舰店消费 4,800+ ￥</p>
                 </div>
               </GlassCard>
             </div>
 
-            <div className="w-full max-w-[380px] lg:ml-auto">
-              <div className="relative overflow-hidden rounded-[1.8rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70">
+            <div className="w-full max-w-[320px] sm:max-w-[360px] lg:ml-auto lg:max-w-[380px]">
+              <div className="relative overflow-hidden rounded-[1.6rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70 md:rounded-[1.8rem]">
                 {heroImages.map((image, index) => (
                   <img
                     key={image}
@@ -642,7 +647,7 @@ function App() {
                     className={`aspect-[4/5] w-full object-cover transition-opacity duration-700 ${index === heroIndex ? 'opacity-100' : 'absolute inset-0 opacity-0'}`}
                   />
                 ))}
-                <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-paper-50/78 px-3 py-2 backdrop-blur-sm">
+                <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2 rounded-full bg-paper-50/78 px-3 py-2 backdrop-blur-sm md:bottom-4">
                   {heroImages.map((_, index) => (
                     <button
                       key={index}
@@ -658,18 +663,18 @@ function App() {
           </div>
         </section>
 
-        <section id="merch" className="py-14">
+        <section id="merch" className="scroll-mt-28 py-12 md:scroll-mt-32 md:py-14">
           <SectionHeading eyebrow="01 · Merchandise" title="周边企划落地" />
 
-          <div className="space-y-20 md:space-y-24">
+          <div className="space-y-16 md:space-y-24">
             <div>
               <div className="mb-6">
-                <p className="text-xs uppercase tracking-[0.28em] text-paper-500">Subsection 01</p>
-                <h3 className="mt-3 font-serif text-2xl text-paper-900 md:text-3xl">开团企划</h3>
-                <p className="mt-2 text-lg leading-8 text-paper-700 md:text-[1.22rem]">完成约稿 - 打样 - 宣发 - 成团 - 出货全流程</p>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.28em]">Subsection 01</p>
+                <h3 className="mt-3 font-serif text-[1.7rem] text-paper-900 md:text-3xl">开团企划</h3>
+                <p className="mt-2 text-base leading-7 text-paper-700 md:text-[1.22rem] md:leading-8">完成约稿 - 打样 - 宣发 - 成团 - 出货全流程</p>
               </div>
 
-              <GlassCard className="p-6 md:p-7">
+              <GlassCard className="p-4 md:p-7">
                 <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                   {processSteps.map((step) => (
                     <ProcessStep key={step.index} index={step.index} title={step.title} desc={step.desc} />
@@ -682,14 +687,14 @@ function App() {
                   <section key={project.name} className="space-y-4">
                     <div className="flex flex-wrap items-end justify-between gap-4">
                       <div>
-                        <h4 className="font-serif text-2xl text-paper-900">{project.name}</h4>
+                        <h4 className="font-serif text-[1.7rem] text-paper-900 md:text-2xl">{project.name}</h4>
                         <p className="mt-2 text-sm leading-7 text-paper-700">属性：{project.attribute}</p>
                         <p className="text-sm leading-7 text-paper-700">娃厂：{project.factory}</p>
                       </div>
                     </div>
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                       {project.images.map((image, index) => (
-                        <article key={`${project.name}-${index}`} className="overflow-hidden rounded-[1.5rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70">
+                        <article key={`${project.name}-${index}`} className="overflow-hidden rounded-[1.3rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70 md:rounded-[1.5rem]">
                           <img src={image} alt={`${project.name} ${index + 1}`} className="w-full transition duration-500 hover:scale-[1.02]" />
                         </article>
                       ))}
@@ -701,15 +706,15 @@ function App() {
 
             <div>
               <div className="mb-6">
-                <p className="text-xs uppercase tracking-[0.28em] text-paper-500">Subsection 02</p>
-                <h3 className="mt-3 font-serif text-2xl text-paper-900 md:text-3xl">《新神榜：杨戬》IP活动策划</h3>
-                <p className="mt-2 text-lg leading-8 text-paper-700 md:text-[1.22rem]">制作 30+ 种不同类型无料，落地授权-设计-打样-下印-派发全流程</p>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.28em]">Subsection 02</p>
+                <h3 className="mt-3 font-serif text-[1.7rem] text-paper-900 md:text-3xl">《新神榜：杨戬》IP活动策划</h3>
+                <p className="mt-2 text-base leading-7 text-paper-700 md:text-[1.22rem] md:leading-8">制作 30+ 种不同类型无料，落地授权-设计-打样-下印-派发全流程</p>
               </div>
 
               <div className="grid gap-4 lg:grid-cols-3">
                 {activityMerchImages.map((image, index) => (
-                  <article key={image} className="overflow-hidden rounded-[1.6rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70 p-3">
-                    <img src={image} alt={`《新神榜：杨戬》线下活动物料 ${index + 1}`} className="w-full rounded-[1.2rem]" />
+                  <article key={image} className="overflow-hidden rounded-[1.4rem] bg-white/70 p-2.5 shadow-soft ring-1 ring-paper-200/70 md:rounded-[1.6rem] md:p-3">
+                    <img src={image} alt={`《新神榜：杨戬》线下活动物料 ${index + 1}`} className="w-full rounded-[1.1rem] md:rounded-[1.2rem]" />
                   </article>
                 ))}
               </div>
@@ -717,20 +722,20 @@ function App() {
           </div>
         </section>
 
-        <section id="content" className="py-14">
+        <section id="content" className="scroll-mt-28 py-12 md:scroll-mt-32 md:py-14">
           <SectionHeading eyebrow="02 · Content Creation" title="同人内容输出" />
-          <div className="grid gap-5 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2 md:gap-5">
             {fanficWorks.map((work) => (
-              <GlassCard key={work.title} className="flex h-full flex-col p-6">
-                <h3 className="font-serif text-2xl text-paper-900">{work.title}</h3>
-                <div className="mt-5 flex-1 rounded-[1.2rem] bg-white/70 p-5 text-sm leading-8 text-paper-800 ring-1 ring-paper-200/60">
+              <GlassCard key={work.title} className="flex h-full flex-col p-4 md:p-6">
+                <h3 className="font-serif text-[1.6rem] text-paper-900 md:text-2xl">{work.title}</h3>
+                <div className="mt-4 flex-1 rounded-[1rem] bg-white/70 p-4 text-sm leading-7 text-paper-800 ring-1 ring-paper-200/60 md:mt-5 md:rounded-[1.2rem] md:p-5 md:leading-8">
                   {work.preview.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
                 </div>
                 <button
                   onClick={() => setSelectedStory(work)}
-                  className="mt-5 w-fit rounded-full border border-paper-300 px-5 py-2 text-sm text-paper-700 transition hover:bg-white"
+                  className="mt-4 w-fit rounded-full border border-paper-300 px-5 py-2 text-sm text-paper-700 transition hover:bg-white md:mt-5"
                 >
                   查看全文
                 </button>
@@ -739,22 +744,22 @@ function App() {
           </div>
         </section>
 
-        <section id="collection" className="py-14">
+        <section id="collection" className="scroll-mt-28 py-12 md:scroll-mt-32 md:py-14">
           <SectionHeading eyebrow="03 · Collection Journey" title="吃谷记录" />
-          <div className="mb-10 max-w-5xl">
-            <p className="text-lg leading-8 text-paper-700 md:text-[1.22rem]">恋与深空 | 恋与制作人 | Chiikawa | 线条小狗 | 三丽鸥 | 二次元IP ......</p>
+          <div className="mb-8 max-w-5xl md:mb-10">
+            <p className="text-base leading-7 text-paper-700 md:text-[1.22rem] md:leading-8">恋与深空 | 恋与制作人 | Chiikawa | 线条小狗 | 三丽鸥 | 二次元IP （不完全展示）</p>
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-4 md:space-y-5">
             {collectionRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="grid gap-5 md:grid-cols-2">
+              <div key={rowIndex} className="grid gap-4 md:grid-cols-2 md:gap-5">
                 {row.map((group) => (
-                  <GlassCard key={group.title} className="p-5">
-                    <div className="mb-4 flex items-center justify-between gap-3">
-                      <h3 className={rowIndex === 0 ? 'font-serif text-2xl text-paper-950 md:text-[1.7rem]' : 'font-serif text-xl text-paper-900'}>
+                  <GlassCard key={group.title} className="p-4 md:p-5">
+                    <div className="mb-3 flex items-center justify-between gap-3 md:mb-4">
+                      <h3 className={rowIndex === 0 ? 'font-serif text-[1.55rem] text-paper-950 md:text-[1.7rem]' : 'font-serif text-[1.35rem] text-paper-900 md:text-xl'}>
                         {group.title}
                       </h3>
-                      <span className="text-[10px] uppercase tracking-[0.24em] text-paper-500">{group.images.length} 张</span>
+                      <span className="text-[10px] uppercase tracking-[0.22em] text-paper-500 md:tracking-[0.24em]">{group.images.length} 张</span>
                     </div>
                     <CollectionMosaic group={group} />
                   </GlassCard>
@@ -764,26 +769,26 @@ function App() {
           </div>
         </section>
 
-        <section id="activity" className="py-14">
+        <section id="activity" className="scroll-mt-28 py-12 md:scroll-mt-32 md:py-14">
           <SectionHeading eyebrow="04 · Event Operations" title="二次元活动落地" />
 
           <div className="space-y-8">
-            <GlassCard className="p-6 md:p-7">
+            <GlassCard className="p-4 md:p-7">
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                 {activityStats.map((item) => (
-                  <div key={item.label} className="rounded-[1.3rem] bg-paper-50 p-4 ring-1 ring-paper-200/60">
-                    <p className="font-serif text-3xl text-paper-900">{item.value}</p>
-                    <p className="mt-3 text-xs uppercase tracking-[0.22em] text-paper-500">{item.label}</p>
+                  <div key={item.label} className="rounded-[1.2rem] bg-paper-50 p-4 ring-1 ring-paper-200/60 md:rounded-[1.3rem]">
+                    <p className="font-serif text-[1.9rem] text-paper-900 md:text-3xl">{item.value}</p>
+                    <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-paper-500 md:text-xs md:tracking-[0.22em]">{item.label}</p>
                   </div>
                 ))}
               </div>
             </GlassCard>
 
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-paper-500">Banner</p>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.28em]">Banner</p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {activityBanners.map((image, index) => (
-                  <article key={image} className="overflow-hidden rounded-[1.6rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70">
+                  <article key={image} className="overflow-hidden rounded-[1.4rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70 md:rounded-[1.6rem]">
                     <img src={image} alt={`二次元活动 banner ${index + 1}`} className="w-full" />
                   </article>
                 ))}
@@ -791,11 +796,11 @@ function App() {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-[0.28em] text-paper-500">活动截图</p>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.28em]">活动截图</p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                 {activityShots.map((image, index) => (
-                  <article key={image} className="overflow-hidden rounded-[1.2rem] bg-white/70 shadow-soft ring-1 ring-paper-200/70 p-2">
-                    <img src={image} alt={`二次元活动截图 ${index + 1}`} className="h-full w-full rounded-[0.9rem] object-cover" />
+                  <article key={image} className="overflow-hidden rounded-[1.1rem] bg-white/70 p-2 shadow-soft ring-1 ring-paper-200/70 md:rounded-[1.2rem]">
+                    <img src={image} alt={`二次元活动截图 ${index + 1}`} className="h-full w-full rounded-[0.85rem] object-cover md:rounded-[0.9rem]" />
                   </article>
                 ))}
               </div>
