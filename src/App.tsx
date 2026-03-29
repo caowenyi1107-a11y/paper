@@ -244,7 +244,7 @@ const fanficWorks = [
   },
   {
     title: '《飞机之上》',
-    preview: ['如果是需要乘坐飞机作为交通工具的旅程，研磨会带上不用联网的游戏机。', '“我想要一张毯子。”', '“睡吧小黑。”'],
+    preview: ['如果是需要乘坐飞机作为交通工具的旅程，研磨会带上不用联网的游戏机。', '”我想要一张毯子。”', '”睡吧小黑。”'],
     fullText: `如果是需要乘坐飞机作为交通工具的旅程，研磨会带上不用联网的游戏机。在高空之上常人会觉得百无聊赖的几个小时，研磨反而会觉得这是没人打扰可以畅快打游戏的快乐时光。
 黑尾反而是坐飞机反应很大的类型，气压变化导致的鼓膜刺痛会伴随整趟飞行，连身边恋人的声音都雾蒙蒙的。
 
@@ -460,18 +460,21 @@ const collectionGroups = [
   },
   {
     title: '恋与深空',
-    layout: 'horizontal-pair',
+    layout: 'mixed',
     images: [
       new URL('../素材/恋与深空1.jpg', import.meta.url).href,
       new URL('../素材/恋与深空2.jpg', import.meta.url).href,
+      new URL('../素材/恋与深空3.jpg', import.meta.url).href,
     ],
   },
   {
     title: 'Chiikawa',
-    layout: 'horizontal-pair',
+    layout: 'mixed',
     images: [
       new URL('../素材/Chiikawa1.jpg', import.meta.url).href,
       new URL('../素材/Chiikawa2.jpg', import.meta.url).href,
+      new URL('../素材/Chiikawa3.jpg', import.meta.url).href,
+      new URL('../素材/Chiikawa4.jpg', import.meta.url).href,
     ],
   },
   {
@@ -490,6 +493,7 @@ const collectionGroups = [
     images: [
       new URL('../素材/二次元1.jpg', import.meta.url).href,
       new URL('../素材/二次元2.jpg', import.meta.url).href,
+      new URL('../素材/二次元3.jpg', import.meta.url).href,
     ],
   },
 ] as const;
@@ -709,6 +713,12 @@ function App() {
                 <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.28em]">Subsection 02</p>
                 <h3 className="mt-3 font-serif text-[1.7rem] text-paper-900 md:text-3xl">《新神榜：杨戬》IP活动策划</h3>
                 <p className="mt-2 text-base leading-7 text-paper-700 md:text-[1.22rem] md:leading-8">制作 30+ 种不同类型无料，落地授权-设计-打样-下印-派发全流程</p>
+                <div className="mt-3 flex flex-wrap gap-x-2 gap-y-1">
+                  {['吧唧', '透卡', '透扇', '异形贴纸', '票根', '口罩', '纸袋', '书签', '手幅', '邮票', '手环'].map((item) => (
+                    <span key={item} className="text-sm text-paper-500">{item}</span>
+                  ))}
+                  <span className="text-sm text-paper-400">等</span>
+                </div>
               </div>
 
               <div className="grid gap-4 lg:grid-cols-3">
@@ -747,7 +757,7 @@ function App() {
         <section id="collection" className="scroll-mt-28 py-12 md:scroll-mt-32 md:py-14">
           <SectionHeading eyebrow="03 · Collection Journey" title="吃谷记录" />
           <div className="mb-8 max-w-5xl md:mb-10">
-            <p className="text-base leading-7 text-paper-700 md:text-[1.22rem] md:leading-8">恋与深空 | 恋与制作人 | Chiikawa | 线条小狗 | 三丽鸥 | 二次元IP （不完全展示）</p>
+            <p className="text-base leading-7 text-paper-700 md:text-[1.22rem] md:leading-8">恋与深空 | 恋与制作人 | Chiikawa | 线条小狗 | 三丽鸥 | 二次元IP | 等</p>
           </div>
 
           <div className="space-y-4 md:space-y-5">
