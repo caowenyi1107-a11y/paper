@@ -649,7 +649,7 @@ function App() {
               <p className="text-[11px] uppercase tracking-[0.24em] text-paper-500 md:text-xs md:tracking-[0.3em]">Papergames-inspired / Morandi palette</p>
               <h1 className="mt-4 font-serif text-[2.5rem] leading-tight text-paper-900 md:mt-5 md:text-5xl">曹雯一</h1>
               <p className="mt-3 text-sm leading-7 tracking-[0.14em] text-paper-600 md:mt-4 md:text-lg md:tracking-[0.18em]">企划落地 · 吃谷能手 · 资深二次元 · 叠系玩家</p>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-paper-800 md:mt-7 md:text-[1.35rem] md:leading-9">从内容到实物，把热爱温柔地落进现实。</p>
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-paper-800 md:mt-7 md:text-[1.35rem] md:leading-9">从内容到实物，把热爱温柔地落进现实</p>
               <div className="mt-5 md:mt-7">
                 <TagRow items={roleTags} />
               </div>
